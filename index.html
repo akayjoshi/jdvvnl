@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jdvvnl|home</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        background-color: whitesmoke;
+      }
+      .container {
+        display: grid;
+        place-items: center;
+        width: 400px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calculate impluse using volatage and time</h1>
+      <label for="impulse">Select Impulse Rate(In whatt)</label>
+      <select name="impulse" id="impulse">
+        <option value="6400" selected>&lt;---------&gt;</option>
+        <option value="6400">6400wh</option>
+        <option value="3200">3200wh</option>
+      </select>
+      <br />
+      <label for="whatt">How many watt Energy yoy will give</label>
+      <input
+        type="number"
+        name="whatt"
+        id="whatt"
+        onkeypress="enterKeyPressed(event)"
+      />
+      <br />
+      <label for="minute">How many minute You will give</label>
+      <input
+        type="number"
+        name="minute"
+        id="minute"
+        onkeypress="enterKeyPressed(event)"
+      />
+      <br />
+      <button onclick="calculate()">Calculate</button>
+      <br />
+      <h3 id="answer"></h3>
+    </div>
+    <script type="text/javascript">
+      /* let inputs = document.getElementsByTagName("input");
+
+      for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener(onkeypress, function (e) {
+          console.log(e.key);
+        });
+      } */
+
+      function enterKeyPressed(event) {
+        console.log(event.keyCode);
+        if (event.keyCode == 13) {
+          calculate();
+        }
+      }
+
+      function calculate() {
+        let impulse_rate = parseInt(document.getElementById("impulse").value);
+        let watt = parseInt(document.getElementById("whatt").value);
+        let minute = parseInt(document.getElementById("minute").value);
+        let impulse = parseInt((impulse_rate / (60 * 1000)) * minute * watt);
+        document.getElementById(
+          "answer"
+        ).innerHTML = `You will get ${impulse} impluses`;
+      }
+    </script>
+  </body>
+</html>
